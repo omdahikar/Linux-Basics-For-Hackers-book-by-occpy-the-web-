@@ -1,0 +1,234 @@
+Sudo apt install tldr --> tldr is for summary of man 
+Examples: tldr nmap , tldr hydra , tldr xfreerdp
+Locate aircrack-ng
+Whereis aircrack-ng
+Which aircrack-ng 
+find / -type f -name apache2
+find /etc -type f -name apache2.\*
+PS aux 
+PS aux |grep apache2
+nl text.txt
+sed s/mysql/MySQL/g /etc/snort/snort.conf > snort2.conf   --> mysql to MySQL 
+sed s/mysql/MySQL/2 snort.conf > snort2.conf -->for changing 2nd occurance 
+more text.txt
+less text.txt
+iwconfig 
+ifconfig eth0 192.168.181.111 --> spoof ip
+ifconfig eth0 192.168.181.115 netmask 255.255.0.0 broadcast 192.168.1.255 -->changing your netmask and broadcast address
+
+ifconfig eth0 down
+ifconfig eth0 hw ether 00:11:22:33:44:55
+ifconfig eth0 up
+
+dhclient eth0
+echo "nameserver 8.8.8.8"> /etc/resolv.conf
+apt-cache search snort
+apt-get install snort
+apt-get purge snort --> for reinstall 
+apt autoremove snort
+leafpad /etc/apt/sources.list --> this contains repositories of Linux all diff versions 
+Add this in the above list 
+deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main
+deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu precise main
+
+
+ GUI-based installation tools are Synaptic and Gdebi --> apt-get install synaptic 
+
+Blue diving, a Bluetooth hacking and pentesting suite
+
+Changing directory permission 
+chmod u-w hashcat.hcstat
+
+
+
+you can temporarily grant the owner’s privileges to execute the file by 
+setting the SUID bit on the program
+4 before the regular permissions, so a file 
+with a new resulting permission of 644 is represented as 4644 when the SUID
+bit is set 
+
+Root User’s Groups permission 
+The SGID bit is represented as 2 before the regular permissions, so a new 
+file with the resulting permissions 644 would be represented as 2644 when 
+the SGID bit is set
+
+The Outmoded Sticky Bit
+The sticky bit is a permission bit that you can set on a directory to allow a 
+user to delete or rename files within that directory. However, the sticky bit 
+is a legacy of older Unix systems, and modern systems (like Linux) ignore 
+it. 
+
+
+find / -user root -perm -4000 -->for SUID permission file finding 
+owner—has an s
+in place of the x. 
+
+
+
+PS --> for viewing which processes are running 
+PS aux--> for details 
+top --> is the command for seeing most using resources processes
+While you have top running, pressing the H or ? key will bring up a list of interactive commands, and pressing Q will quit top. 
+
+ nice --> The nice command is used to influence the priority of a process to 
+the kernel.
+values for nice range from −20 to +19, with zero being the default 
+value (see Figure 6-1). A high nice value translates to a low priority, and a 
+low nice value translates to a high priority (when you’re not being so nice 
+to other users and processes)
+
+Setting the Priority When Starting a Process
+nice -n -10 /bin/slowprocess --> increasing its 
+priority
+nice -n 10 /bin/slowprocess --> decrease it's priority 
+
+Changing the Priority of a Running Process with renice
+renice 19 1668 --> 1668 is PID ,renice requires the PID of the 
+process you are targeting rather than the name
+
+You can also use the top utility to change the nice value. With the top
+utility running, simply press the R key and then supply the PID and the nice
+value. Listing 6-4 shows the top utility running. When I press the R key and 
+supply the PID and nice value, I get the following output
+
+For killing processes
+ The syntax for the kill command is kill-signal PID, where the signal 
+switch is optional. If you don’t provide a signal flag, it defaults to SIGTERM
+
+SIGHUP 1 This is known as the Hangup (HUP) signal. It stops the designated process and restarts it with the same PID.
+SIGINT 2 This is the Interrupt (INT) signal. It is a weak kill signal that isn’t guaranteed to work, but it works in most cases.
+SIGQUIT 3 This is known as the core dump. It terminates the process and saves the process information in memory, and then it saves this information in the current working directory to 
+a file named core. 
+SIGTERM 15 This is the Termination (TERM) signal. It is the kill command’s default kill signal.
+SIGKILL 9 This is the absolute kill signal. It forces the process to stop by sending the process’s resources to a special device, /dev/null
+
+>kill -1 6996
+>kill -2 6996
+>kill -3 6996
+>kill -15 6996
+>kill -9 6996
+
+you can use the killall command to 
+kill the process. This command takes the name of the process, instead of 
+the PID
+Killall -9 rogueprocess --> rogueprocess are the process which water overly using resources 
+
+
+To start the text editor in the background, just append an ampersand 
+(&) to the end of the command
+leafpad newscript &
+
+You can also move a process to the background using the bg command 
+followed by the PID of the process. If you don’t know the PID, you can use 
+the ps command to find it
+
+Moving a Process to the Foreground
+fg 1234
+
+
+A hacker might want to set a script to run to perform reconnaissance on a regular basis, finding open ports or vulnerabilities. In Linux, 
+you can accomplish this in at least two ways: with at and crond
+
+ The syntax is simply the at command followed 
+by the time to execute the process. The time argument can be provided in 
+various formats
+
+at 7:20pm 
+at 7:20pm June 25 
+at noon 
+at noon June 25 
+at tomorrow 
+at now + 20 minutes 
+at now + 10 hours 
+at now + 5 days 
+at now + 3 weeks 
+at 7:20pm 06/25/2019 
+
+kali >at 7:20am
+at >/root/myscanningscript
+
+stop entering commands, hit ctrl-D
+
+
+there are two types of variables: shell and environmentat 
+Variables are simply strings in key-value pairs. Generally, each pair will 
+look like KEY=value. In cases where there are multiple values, they will look 
+like KEY=value1:value2. 
+You can change the values for these variables to make your system work 
+more efficiently, tailor your work environment to best meet your individual 
+needs, and potentially cover your tracks if you need to
+
+Viewing and Modifying Environment Variable
+env
+
+To view all environment variables, including shell variables, local variables, and shell functions such as any user-defined variables and command 
+aliases, use the set command.
+set | more
+set | grep HISTSIZE --> for history variables 
+
+Changing Variable Values for a Session
+HISTSIZE=0
+
+Making Variable Value Changes Permanent
+
+export -->
+If you want to make the 
+changes permanent, you need to use the export command. This command 
+will export the new value from your current environment (the bash shell) to 
+any new forked child processes. This allows the new process to inherit the 
+exported variables
+
+ PS1 variable, which controls 
+the information you display in the prompt
+echo $HISTSIZE> ~/valueofHISTSIZE.txt --> safe side to save it in text file
+set> ~/valueofALLon01012019.tx --> more safe to save all the variables
+
+kali>export HISTSIZE
+ For resetting 
+kali >HISTSIZE=1000
+kali >export HISTSIZE
+
+Changing your shell prompt 
+Your shell prompt, another environment variable, provides you with useful 
+information such as the user you’re operating as and the directory in which 
+you’re currently working
+
+root@kali:current_directory #
+
+You can change the name in the default shell prompt by setting the 
+value for the PS1 variable. The PS1 variable has a set of placeholders for 
+information you want to display in the prompt, including the following:
+\u The name of the current user
+\h The hostname
+\w The base name of the current working directory
+PS1="World's Best Hacker: #"
+export PS1 --> for making it permanently to every terminal session 
+
+For looking like cmd 
+kali >export PS1='C:\w> '
+kali >cd /tmp
+C:/tmp>
+
+Changing Your PATH
+echo $PATH
+These are the directories where your terminal will search for any com
+mand. When you enter ls
+Each directory is separated by a colon (:)
+ To add newhackingtool to your PATH variable, enter the following:
+ kali >PATH=$PATH:/root/newhackingtool
+This assigns the original PATH variable plus the /root/newhackingtool 
+directory to the new PATH variable, so the variable contains everything it did 
+before, plus the new tool directory.
+adding a lot of 
+directories could slow down your terminal and your hacking.
+
+Creating a User-Defined Variable
+>MYNEWVARIABLE="Hacking is the most valuable skill set in the 21st century"
+>echo $MYNEWVARIABLE
+>unset MYNEWVARIABLE
+
+
+
+
+
+
