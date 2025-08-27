@@ -1,0 +1,64 @@
+ categorize compression as either 
+lossy or lossless
+
+Lossy compression is very effective in reducing the size of files, but the 
+integrity of the information is lost
+works great for graphics, video, and audio files
+—.mp3, .mp4, and .jpg are all lossy compression algo
+rithms
+ strengths of lossy compression are 
+its efficiency and effectiveness
+
+
+ when archiving files, you’ll use the tar command
+The tar command creates a single file 
+from many files, which is then referred to as an archive, tar file, or tarball.
+>tar -cvf HackersArise.tar hackersarise1 hackersarise2 hackersarise3 --> to archive all the three hackerarise* files
+
+ The c option means create, v (which stands for verbose and is optional) lists the files that 
+tar is dealing with, and f means write to the following file. This last option 
+will also work for reading from files
+
+
+>tar -tvf HackersArise.tar--> for displaying those files from the tarball, without extracting them, by 
+using the tar command with the -t content list switch
+
+>tar -xf HackersArise.tar--> If you want to extract the files and do so “silently,” meaning without showing any output, you can simply 
+remove the -v (verbose) switch
+
+ gzip, which uses the extension .tar.gz or .tgz
+ bzip2, which uses the extension .tar.bz2
+ compress, which uses the extension .tar.z
+all with different compression ratios
+
+ 'compress' is the fastest, but the resultant files are larger
+ 'bzip2' is the slowest, but the resultant files are the smallest
+ 'gzip' falls somewhere in between
+
+GNU zip (gzip)
+>gzip HackersArise.*
+>gunzip HackersArise.*
+
+bzip2 --> smaller size than gzip
+>bzip2 HackersArise.*
+>bunzip2 HackersArise.*
+
+compress
+>compress HackersArise.*
+>uncompress HackersArise.*
+
+ dd command makes a bit-by-bit copy of a file, a filesystem, or even an entire hard drive. This 
+means that even deleted files are copied
+very slow, not use in day to day life , used for forensic
+ dd if=inputfile of=outputfile --> syntax
+>dd if=/dev/sdb of=/root/flashcopy --> flash drive is sdb
+
+
+most useful are the noerror 
+option and the bs (block size) option. As the name implies, the noerror option 
+continues to copy even if errors are encountered. The bs option allows you 
+to determine the block size (the number of bytes read/written per block) of 
+the data being copied. By default, it is set to 512 bytes, but it can be changed 
+to speed up the process
+
+>dd if=/dev/media of=/root/flashcopy bs=4096 conv:noerror--> most often uses 4KB(4096 bytes)
