@@ -1,0 +1,16 @@
+Aloha tech support could access the end user’s system through port 5505 to provide assistance when the user called for help. Max realized that if he found a system connected to the internet with the Aloha POS system, he could access the system with sysadmin privileges through port 5505. Max was able to enter many of these systems and steal tens of thousands of credit card numbers.
+
+ our script will scan for systems 
+connected to the ubiquitous online database MySQL
+ MySQL uses port 3306
+ Databases are the 
+“Golden Fleece” 
+
+
+first hacking script..
+ #! /bin/bash
+ # This script is designed to find hosts with MySQL installed
+ nmap  -sT 192.168.181.0/24  -p 3306  > /dev/null  -oG MySQLscan
+ cat MySQLscan | grep open > MySQLscan2 |
+ cat MySQLscan2
+
