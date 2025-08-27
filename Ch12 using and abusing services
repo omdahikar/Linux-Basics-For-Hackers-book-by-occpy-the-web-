@@ -1,0 +1,121 @@
+ubiquitous Apache Web Server, which is used for creating, managing, and deploying web servers
+ service servicename start|stop|restart --> syntax for sevices
+service apache2 start  --> web server of http server
+service apache2 stop
+service apache2 restart --> when you make a configuration change to an application or service by altering its plaintext configuration file, you need to restart the service to capture the new configuration
+
+ You can 
+also use Apache to set up your own web server, from which you could serve 
+up malware via cross-site scripting (XSS) to anyone who visits your site, or 
+you could clone a website and redirect traffic to your site via abuse of the 
+Domain Name System (DNS)
+
+>apt-get install apache2 --> if not installed
+
+ combination of Linux, Apache, MySQL, and PHP 
+or Python forms a powerful and robust platform for the development and 
+deployment of web-based applications, known collectively as LAMP .
+in the Microsoft world WAMP
+
+>service apache2 start--> it serves a default web page http://localhost/ or http://127.0.0.1/
+
+now we customize it ,Apache’s default web page is at /var/www/html/index.html
+can edit the index.html file to serve up whatever information you want,
+
+When we’re building a web server, 
+SSH enables us to create an access list (a list of users who can use this service)
+ Linux SSH service is OpenSSH
+
+ we use SSH to set up a remote Raspberry Pi system for spying, something I call the “Raspberry Spy Pi.” For this, you’ll 
+need a Raspberry Pi and the attendant Raspberry Pi camera module
+ >service ssh start
+we’ll use the Raspberry Spy Pi on the same network as our Kali 
+system, which allows us to use private, internal IP addresses
+ Raspberry Pi is running the Raspbian operating system
+download instructions at https://www.raspberrypi.org/downloads/raspbian/
+ connect your Raspberry Pi to a monitor, mouse, and keyboard 
+and then connect it to the internet, instructions at https://www.raspberrypi.org/learning/hardware-guide/
+username:pi
+password:raspberry.
+
+make certain that SSH is running and enabled, off by default
+ launch Raspberry Pi Configuration. Then go to the 
+Interfaces tab and, next to SSH, click Enabled (if it is not already checked) 
+and click OK.
+>service ssh start
+ Next you need to attach your camera module. If you’re using a Raspberry 
+Pi version 3 board, there’s only one place to connect it. Switch the Pi off, 
+attach the module to the camera port, and then switch it on again. Note that 
+the camera is very fragile and must never come into contact with the general
+purpose input/output (GPIO) pins; otherwise, it might short and die.
+
+Now, with the SSH service up and running, place the Raspberry Spy 
+Pi somewhere within your home, school, or some other location you want 
+to spy on. It must, of course, be connected to the local area network, 
+either by Ethernet cable or, ideally, via Wi-Fi. (The new Raspberry Pi 3 and 
+Raspberry Pi Zero  both have built-in Wi-Fi.)
+
+>ifconfig--> for ip
+>ssh pi@192.168.1.101--> connecting to ssh
+
+ start the Raspberry Pi 
+configuration tool by entering 
+>sudo raspi-config --> configuring the camera
+
+down 6 Enable Camera and press enter. Now, scroll to the bot
+tom of this menu and select Finish and press enter
+reboot yes --> enabling the camera
+
+ pi@raspberrypi: raspistill --> starting to spy
+pi@raspberrypi: raspistill -v -o firstpicture.jpg --> remote spying pictures
+ pi@raspberrypi: ls -l'
+
+
+ popular content management systems (CMSs) such as Joomla, 
+Drupal, and Ruby on Rails all use MySQL, too
+>service mysql start
+ authenticate yourself by logging in. Enter the follow
+ing and, when prompted for a password, just press enter:
+>mysql -u root -p
+ passwords for your operating system and MySQL are sepa
+rate and distinct
+ select user, password from customers where user='admin';
+
+>select user, host, password from mysql.user;--> for assigning password
+>show databases;
+
+ MySQL comes with three databases by default, two of which (information_ 
+schema and performance_schema) are administrative databases that we won’t use 
+here. We’ll use the non-administrative database, mysql, which is included for 
+your own purposes. To begin using the mysql database, enter:
+
+> use mysql; --> connects us to mysql
+mysql> update user set password = PASSWORD("hackers-arise") where user = 'root';
+mysql>mysql -u <username> -p --> accessing remote database for localhost
+mysql>mysql -u root -p 192.168.1.101 --> if it isn’t given a hostname or IP address
+MySQL has 
+GUI interfaces—both native (MySQL Workbench) and third party (Navicat 
+and TOAD for MySQL)
+NOTE: Remember that all commands must end in a semicolon or \g (unlike Microsoft’s SQL 
+Server) and that we can get help by entering help; or \h
+
+mysql>show databases; --> information schema
+		     mysql
+		     credicardnumbers
+		     persformance-schema
+mysql>use creditcardnumbers;
+mysql>show tables;
+>describe cardnumbers;
+>SELECT * FROM cardnumbers;
+
+PostgreSQL with Megasploit
+>apt-get postgres install
+>service postgresql start
+>msfconsole
+msf>msfdb init -->here we’ll set up the database that Metasploit will store its information in.
+msf>su postgres
+postgres@kali:/root$ createuser msf_user -P
+postgres@kali:/root$ createdb --owner=msf_user hackers_arise_db --> creating db
+postgres@kali:/root$ exit 
+msf>db_connect msf_user:password@127.0.0.1/hackers_arise_db
+msf>db_status
