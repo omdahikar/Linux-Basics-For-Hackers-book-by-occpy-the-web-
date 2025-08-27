@@ -1,0 +1,83 @@
+dev is short for device
+cd /dev
+dev is short for device
+ex. cdrom and cpu, but others have 
+rather cryptic names
+interest are the devices sda1, sda2, sda3, sdb, and 
+sdb1, which are usually the hard drive and its partitions and a USB flash 
+drive and its partitions.
+floppy drives (remember those?) as fd0 
+and hard drives as hda
+old legacy hard drives that used an IDE or 
+E-IDE inte rface are still represented in the form hda
+ 
+Newer Serial ATA (SATA) interface drives and Small Computer System Interface (SCSI) hard 
+drives are represented as sda.
+SATA hard drive
+sda
+sdb
+sdc
+..
+sd*
+
+SATA drive 
+sda1
+sda2
+sda3
+..
+sda*
+
+fdisk -l
+
+ old legacy hard drives that used an IDE or E-IDE inte rface are still represented in the form hda
+ Newer Serial ATA 
+(SATA) interface drives and Small Computer System Interface (SCSI) hard 
+drives are represented as sda
+
+ view the partitions on your Linux system can be used as  fdisk utility
+
+fdisk indicates that it is an HPFS/NTFS/ExFAT filesystem type
+
+High Performance File System (HPFS), New Technology File System 
+(NTFS), and Extended File Allocation Table (exFAT)—are not native to 
+Linux systems but rather to macOS and Windows systems
+
+Windows use an NTFS filesystem, whereas older Windows 
+systems use File Allocation Table (FAT) systems. Linux uses a number of 
+different types of filesystems, but the most common are ext2, ext3, and 
+ext4. These are all iterations of the ext (or extended) filesystem, with ext4 
+being the latest.
+
+Character and Block Devices
+--> Character and Block Devices
+__________________________________________________________
+ crw-------   1  root root  10, 175  May 16  12:44 agpgart
+__________________________________________________________
+
+List Block Devices and Information with lsblk
+ >lsblk
+
+output may include the floppy drive as fd0 and DVD drive as sr0,
+>mount /dev/sdb1 /mnt
+>mount /dev/sdc1 /media 	
+umount /dev/sdb1
+
+command df (for disk free) will provide us with basic information on 
+any hard disks or mounted devices, such as CD, DVD, and flash drives, 
+including how much space is being used and how much is available 
+ >df
+sd SATA hard drive
+ a First hard drive
+ 1 First partition on that drive
+
+ Checking for Errors
+fsck command (short for filesystem check) checks the filesystem for errors 
+and repairs the damage, if possible, or else puts the bad area into a bad blocks 
+table to mark it as bad
+must unmount the drive before
+>umount /dev/sdb1
+ -p option to have fsck automatically repair any problems 
+with the device
+ >fsck -p /dev/sdb1
+with the device unmounted, I can now check for any bad sectors or 
+other problems with the device,
